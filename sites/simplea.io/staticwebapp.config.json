@@ -2,13 +2,16 @@
   "routes": [
     {
       "route": "/ads.txt",
-      "redirect": "https://srv.adstxtmanager.com/19390/simplea.io",
-      "statusCode": 301
+      "rewrite": "/api/ads.txt"
     },
     {
       "route": "/Ads.txt",
-      "redirect": "https://srv.adstxtmanager.com/19390/simplea.io",
-      "statusCode": 301
+      "rewrite": "/api/ads.txt"
     }
-  ]
+  ],
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/index.html"
+    }
+  }
 }

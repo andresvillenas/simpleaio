@@ -6,12 +6,59 @@
     <title>simplea.io ads.txt host</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5816033971207455"
          crossorigin="anonymous"></script>
+    <style>
+      body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+      .status { padding: 1rem; background: #f0f0f0; border-radius: 4px; margin: 1rem 0; }
+      .mode { font-weight: bold; color: #0066cc; }
+      button { padding: 0.5rem 1rem; font-size: 1rem; cursor: pointer; background: #0066cc; color: white; border: none; border-radius: 4px; }
+      button:hover { background: #0052a3; }
+      .description { margin: 1rem 0; padding: 1rem; background: #fffbea; border-left: 4px solid #f59e0b; }
+    </style>
   </head>
   <body>
     <main>
       <h1>simplea.io</h1>
-      <p>This is a minimal host for the ads.txt redirect.</p>
-      <p><a href="/Ads.txt">Check /Ads.txt</a></p>
+      <p>This is a minimal host for ads.txt management.</p>
+      
+      <div class="status">
+        <p><strong>Current Mode:</strong> <span class="mode" id="currentMode">Loading...</span></p>
+      </div>
+
+      <div class="description">
+        <p><strong>Redirect mode:</strong> Redirects to Ezoic Ads.txt Manager</p>
+        <p><strong>Direct mode:</strong> Serves Google AdSense content directly</p>
+      </div>
+
+      <button onclick="toggleMode()">Toggle Mode</button>
+      
+      <p style="margin-top: 2rem;">
+        Test: <a href="/ads.txt" target="_blank">/ads.txt</a>
+      </p>
+
+      <script>
+        async function loadMode() {
+          try {
+            const res = await fetch('/api/get-mode');
+            const config = await res.json();
+            document.getElementById('currentMode').textContent = config.mode;
+          } catch (err) {
+            document.getElementById('currentMode').textContent = 'Error loading mode';
+          }
+        }
+
+        async function toggleMode() {
+          try {
+            const res = await fetch('/api/toggle-mode', { method: 'POST' });
+            const config = await res.json();
+            document.getElementById('currentMode').textContent = config.mode;
+            alert(`Mode switched to: ${config.mode}`);
+          } catch (err) {
+            alert('Error toggling mode: ' + err.message);
+          }
+        }
+
+        loadMode();
+      </script>
     </main>
   </body>
   </html>
