@@ -1,0 +1,9 @@
+{
+  "routes": [
+    {
+      "route": "/ads.txt",
+      "redirect": "https://srv.adstxtmanager.com/19390/simplea.io",
+      "statusCode": 301
+    }
+  ]
+}
