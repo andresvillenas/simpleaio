@@ -27,7 +27,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "./sites/simplea.io"
-            api_location: "./sites/simplea.io/api"
+          api_location: "./sites/simplea.io/api"
           output_location: "."
 
   close_pull_request_job:
