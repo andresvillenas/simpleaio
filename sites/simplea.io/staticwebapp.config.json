@@ -8,10 +8,5 @@
       "route": "/Ads.txt",
       "rewrite": "/api/ads.txt"
     }
-  ],
-  "responseOverrides": {
-    "404": {
-      "rewrite": "/index.html"
-    }
-  }
+  ]
 }
